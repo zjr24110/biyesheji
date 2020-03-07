@@ -15,7 +15,7 @@
   import Books from './Books'
 
   export default {
-    name: 'AppLibrary',
+    name: 'Library',
     components: {Books, SideMenu},
     methods: {
       listByCategory () {

@@ -22,25 +22,32 @@ public class BookService {
     CategoryService categoryService;
 
     public List<Book> list() {
-        Sort sort = new Sort(Sort.Direction.DESC, "id");
-        return bookDAO.findAll(sort);
+        Sort sort = new Sort (Sort.Direction.DESC, "id");
+        return bookDAO.findAll (sort);
     }
 
-    public void addOrUpdate(Book book) {
-        bookDAO.save(book);
+    public void addOrUpdate( Book book ) {
+        bookDAO.save (book);
     }
 
-    public void deleteById(int id) {
-        bookDAO.deleteById(id);
+    public void deleteById( int id ) {
+        bookDAO.deleteById (id);
     }
 
-    public List<Book> listByCategory(int cid) {
-        Category category = categoryService.get(cid);
-        Sort sort = new Sort(Sort.Direction.DESC, "id");
-        return bookDAO.findAllByCategory(category);
+    public List<Book> listByCategory( int cid ) {
+        Category category = categoryService.get (cid);
+        Sort sort = new Sort (Sort.Direction.DESC, "id");
+        return bookDAO.findAllByCategory (category);
     }
 
-    public List<Book> Search(String keywords) {
-        return bookDAO.findAllByTitleLikeOrAuthorLike('%' + keywords + '%', '%' + keywords + '%');
+    public List<Book> Search( String keywords ) {
+        return bookDAO.findAllByTitleLikeOrAuthorLike ('%' + keywords + '%', '%' + keywords + '%');
+    }
+
+    public List<Book> findAllByBookId( List<Integer> bookIdList ) {
+        Sort sort = new Sort (Sort.Direction.DESC, "id");
+        return bookDAO.findByIdIn (bookIdList,sort);
+
+
     }
 }

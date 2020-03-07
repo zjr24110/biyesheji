@@ -13,8 +13,8 @@
         <el-form-item label="手机号" label-width="120px" prop="phone">
           <el-input v-model="selectedUser.phone" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="邮箱" label-width="120px" prop="email">
-          <el-input v-model="selectedUser.email" autocomplete="off"></el-input>
+        <el-form-item label="专业" label-width="120px" prop="major">
+          <el-input v-model="selectedUser.major" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" label-width="120px" prop="password">
           <el-button type="warning" @click="resetPassword(selectedUser.username)">重置密码</el-button>
@@ -71,8 +71,8 @@
           fit>
         </el-table-column>
         <el-table-column
-          prop="email"
-          label="邮箱"
+          prop="major"
+          label="专业"
           show-overflow-tooltip
           fit>
         </el-table-column>
@@ -189,7 +189,7 @@
             username: user.username,
             name: user.name,
             phone: user.phone,
-            email: user.email,
+            major: user.major,
             roles: roles
           }).then(resp => {
             if (resp && resp.status === 200) {

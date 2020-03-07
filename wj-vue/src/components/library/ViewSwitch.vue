@@ -1,21 +1,21 @@
-<template>
-  <el-switch
-    v-model="value"
-    active-text="列表视图">
-  </el-switch>
-</template>
+<!--<template>-->
+  <!--<el-switch-->
+    <!--v-model="value"-->
+    <!--active-text="列表视图">-->
+  <!--</el-switch>-->
+<!--</template>-->
 
-<script>
-  export default {
-    name: 'ViewSwitch',
-    data () {
-      return {
-        value: true
-      }
-    }
-  }
-</script>
+<!--<script>-->
+  <!--export default {-->
+    <!--name: 'ViewSwitch',-->
+    <!--data () {-->
+      <!--return {-->
+        <!--value: true-->
+      <!--}-->
+    <!--}-->
+  <!--}-->
+<!--</script>-->
 
-<style scoped>
+<!--<style scoped>-->
 
-</style>
+<!--</style>-->

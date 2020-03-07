@@ -1,7 +1,6 @@
 <template>
   <div>
     <el-row style="height: 840px;">
-      <search-bar @onSearch="searchResult" ref="searchBar"></search-bar>
       <view-switch class="switch"></view-switch>
       <el-tooltip effect="dark" placement="right"
                   v-for="item in books.slice((currentPage-1)*pagesize,currentPage*pagesize)"
@@ -24,10 +23,10 @@
             </div>
           </div>
           <!--<div class="author">-->
-            <!--<a href="">{{item.author}}</a>-->
+          <!--<a href="">{{item.author}}</a>-->
           <!--</div>-->
           <div class="button">
-              <el-button size="mini" type="primary" icon="el-icon-plus" circle v-on:click="DoSth(item.id)"></el-button>
+            <el-button size="mini" type="primary" icon="el-icon-plus" circle v-on:click="DoSth(item.id)"></el-button>
           </div>
         </el-card>
       </el-tooltip>
@@ -44,12 +43,8 @@
 </template>
 
 <script>
-  import SearchBar from './SearchBar'
-  import ViewSwitch from './ViewSwitch'
-
   export default {
-    name: 'Books',
-    components: {SearchBar, ViewSwitch},
+    name: 'history',
     data () {
       return {
         books: [],
@@ -62,8 +57,12 @@
     },
     methods: {
       loadBooks () {
+        var user = JSON.parse(localStorage.getItem('user'))
         var _this = this
-        this.$axios.get('/books').then(resp => {
+        this.$axios.post('/book', {
+          userName: user.username,
+          bookID: 1
+        }).then(resp => {
           if (resp && resp.status === 200) {
             _this.books = resp.data
           }
@@ -72,17 +71,6 @@
       handleCurrentChange: function (currentPage) {
         this.currentPage = currentPage
       },
-      searchResult () {
-        var _this = this
-        this.$axios
-          .post('/search', {
-            keywords: this.$refs.searchBar.keywords
-          }).then(resp => {
-          if (resp && resp.status === 200) {
-            _this.books = resp.data
-          }
-        })
-      },
       DoSth (bid) {
         var user = JSON.parse(localStorage.getItem('user'))
         alert(bid + user.username)
@@ -90,7 +78,7 @@
           .post('/userBook/add', {
             userName: user.username,
             bookID: bid
-        }).then(resp => {
+          }).then(resp => {
           if (resp && resp.status === 200) {
             alert('阅览成功')
           }
@@ -121,15 +109,15 @@
     text-align:center;
   }
   /*.author {*/
-       /*!*float: left;*!*/
-    /*!*color: #333;*!*/
-    /*!*width: 66px;*!*/
-    /*font-size: 13px;*/
-    /*!*margin-bottom: 6px;*!*/
-    /*!*text-align: left;*!*/
-    /*float: left;*/
-    /*width: 30%;*/
-    /*height:auto;*/
+  /*!*float: left;*!*/
+  /*!*color: #333;*!*/
+  /*!*width: 66px;*!*/
+  /*font-size: 13px;*/
+  /*!*margin-bottom: 6px;*!*/
+  /*!*text-align: left;*!*/
+  /*float: left;*/
+  /*width: 30%;*/
+  /*height:auto;*/
   /*}*/
   .button {
     /*float: right;*/

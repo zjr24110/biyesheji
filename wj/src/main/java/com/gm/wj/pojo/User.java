@@ -25,7 +25,7 @@ public class User {
     private String salt;
     private String name;
     private String phone;
-    private String email;
+    private String major;
     private boolean enabled;
     @Transient
     private List<AdminRole> roles;
@@ -34,12 +34,12 @@ public class User {
     public User() {}
 
     // 用于配合自定义查询的构造函数
-    public User(int id,String username, String name, String phone, String email, boolean enabled) {
+    public User(int id,String username, String name, String phone, String major, boolean enabled) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.major = major;
         this.enabled = enabled;
     }
 
@@ -91,12 +91,12 @@ public class User {
         this.phone = phone;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMajor() {
+        return major;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMajor(String major) {
+        this.major = major;
     }
 
 

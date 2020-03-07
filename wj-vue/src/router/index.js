@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import AppIndex from '../components/home/AppIndex'
-import Articles from '../components/jotter/Articles'
+// import Articles from '../components/jotter/Articles'
 import Editor from '../components/admin/content/ArticleEditor'
 import LibraryIndex from '../components/library/LibraryIndex'
 import Login from '../components/Login'
@@ -9,7 +9,9 @@ import Home from '../components/Home'
 import AdminIndex from '../components/admin/AdminIndex'
 import Register from '../components/Register'
 import DashBoard from '../components/admin/dashboard/admin/index'
-import ArticleDetails from '../components/jotter/ArticleDetails'
+import Recommand from '../components/recommand/recommandIndex'
+import History from '../components/history/historyIndex'
+// import ArticleDetails from '../components/jotter/ArticleDetails'
 
 Vue.use(Router)
 
@@ -34,16 +36,16 @@ export default new Router({
           name: 'AppIndex',
           component: AppIndex
         },
-        {
-          path: '/jotter',
-          name: 'Jotter',
-          component: Articles
-        },
-        {
-          path: '/jotter/article',
-          name: 'Article',
-          component: ArticleDetails
-        },
+        // {
+        //   path: '/jotter',
+        //   name: 'Jotter',
+        //   component: Articles
+        // },
+        // {
+        //   path: '/jotter/article',
+        //   name: 'Article',
+        //   component: ArticleDetails
+        // },
         {
           path: '/admin/content/editor',
           name: 'Editor',
@@ -58,6 +60,16 @@ export default new Router({
           component: LibraryIndex
         }
       ]
+    },
+    {
+      path: '/recommand',
+      name: 'recommand',
+      component: Recommand
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: History
     },
     {
       path: '/login',
@@ -90,7 +102,6 @@ export default new Router({
   ]
 })
 
-// 用于创建默认路由
 export const createRouter = routes => new Router({
   mode: 'history',
   routes: [
@@ -113,15 +124,25 @@ export const createRouter = routes => new Router({
           component: AppIndex
         },
         {
-          path: '/jotter',
-          name: 'Jotter',
-          component: Articles
+          path: '/recommand',
+          name: 'recommand',
+          component: Recommand
         },
         {
-          path: '/jotter/article',
-          name: 'Article',
-          component: ArticleDetails
+          path: '/history',
+          name: 'history',
+          component: History
         },
+        // {
+        //   path: '/jotter',
+        //   name: 'Jotter',
+        //   component: Articles
+        // },
+        // {
+        //   path: '/jotter/article',
+        //   name: 'Article',
+        //   component: ArticleDetails
+        // },
         {
           path: '/admin/content/editor',
           name: 'Editor',

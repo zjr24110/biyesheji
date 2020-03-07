@@ -42,6 +42,7 @@ public class LoginController {
             }
             subject.login(usernamePasswordToken);
             // 生成随机 token 并存储在 session 中
+            System.out.println (usernamePasswordToken);
             return ResultFactory.buildSuccessResult(usernamePasswordToken);
 
         } catch (AuthenticationException e) {
@@ -61,7 +62,7 @@ public class LoginController {
         String username = user.getUsername();
         String name = user.getName();
         String phone = user.getPhone();
-        String email = user.getEmail();
+        String major = user.getMajor ();
         String password = user.getPassword();
 
         username = HtmlUtils.htmlEscape(username);
@@ -70,8 +71,8 @@ public class LoginController {
         user.setName(name);
         phone = HtmlUtils.htmlEscape(phone);
         user.setPhone(phone);
-        email = HtmlUtils.htmlEscape(email);
-        user.setEmail(email);
+        major = HtmlUtils.htmlEscape(major);
+        user.setMajor (major);
         user.setEnabled(true);
 
         if (username.equals("") || password.equals("")) {

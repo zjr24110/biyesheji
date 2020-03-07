@@ -20,8 +20,8 @@
                 auto-complete="off" placeholder="电话号码"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-input type="text" v-model="loginForm.email"
-                auto-complete="off" placeholder="E-Mail"></el-input>
+      <el-input type="text" v-model="loginForm.major"
+                auto-complete="off" placeholder="专业"></el-input>
     </el-form-item>
     <el-form-item style="width: 100%">
       <el-button type="primary" style="width: 40%;background: #505458;border: none" v-on:click="register">注册</el-button>
@@ -43,7 +43,7 @@
           password: '',
           name: '',
           phone: '',
-          email: ''
+          major: ''
         },
         loading: false
       }
@@ -57,7 +57,7 @@
             password: this.loginForm.password,
             name: this.loginForm.name,
             phone: this.loginForm.phone,
-            email: this.loginForm.email
+            major: this.loginForm.major
           })
           .then(resp => {
             if (resp.data.code === 200) {

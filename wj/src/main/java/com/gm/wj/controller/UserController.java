@@ -55,7 +55,7 @@ public class UserController {
         User user = userService.findByUserName(requestUser.getUsername());
         user.setName(requestUser.getName());
         user.setPhone(requestUser.getPhone());
-        user.setEmail(requestUser.getEmail());
+        user.setMajor(requestUser.getMajor ());
         userService.addOrUpdate(user);
         adminUserRoleService.saveRoleChanges(user.getId(),requestUser.getRoles());
         String message = "修改用户信息成功";
