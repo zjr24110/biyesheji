@@ -1,7 +1,6 @@
 package com.gm.wj.service;
 
 import com.gm.wj.dao.BookRecommandDAO;
-import com.gm.wj.pojo.Book;
 import com.gm.wj.pojo.BookRecommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

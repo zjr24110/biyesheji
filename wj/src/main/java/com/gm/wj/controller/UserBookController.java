@@ -1,23 +1,13 @@
 package com.gm.wj.controller;
-
-import com.alibaba.fastjson.JSON;
-import com.gm.wj.pojo.BookRecommand;
-import com.gm.wj.pojo.BookUserDTO;
-import com.gm.wj.pojo.User;
-import com.gm.wj.pojo.UserBook;
+import com.gm.wj.pojo.*;
 import com.gm.wj.result.Result;
-import com.gm.wj.result.ResultCode;
 import com.gm.wj.result.ResultFactory;
-import com.gm.wj.service.BookRecommandService;
-import com.gm.wj.service.UserBookService;
-import com.gm.wj.service.UserService;
+import com.gm.wj.service.*;
 import com.gm.wj.util.AprioriMyself;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +25,11 @@ public class UserBookController {
     @Autowired
     private UserService userService;
     @Autowired
+    private  TopBookService topBookService;
+    @Autowired
     private BookRecommandService bookRecommandService;
+    @Autowired
+    private BookService bookService;
 
     @PostMapping("/api/userBook/add")
     public Result addUserBook( @RequestBody BookUserDTO dto ){
@@ -47,11 +41,24 @@ public class UserBookController {
         userBook.setUserId (user.getId ());
         userBook.setBookId (dto.getBookID ());
         userBookService.addUpdate(userBook);
+        TopBook topBook =new TopBook ();
+        topBook.setBookId (dto.getBookID ());
+        topBookService.addTopBook (topBook);
+        Book book = new Book ();
+        book.setId (dto.getBookID ());
+        bookService.addTimes(book);
         return ResultFactory.buildSuccessResult (null);
     }
-
-
-
+//    /////////////////////////////
+//    @PostMapping("api/topbook/add")
+//    public Result addTopBook( @RequestBody UserBook dto){
+//        TopBook topBook = new TopBook ();
+//        topBook.setBookId (dto.getBookId ());
+//        topBook.setReadTimes (dto.getReadTimes ());
+//        topBookService.addTopBook (topBook);
+//        return ResultFactory.buildSuccessResult (null);
+//    }
+//    ///////////////////////////////
     @PostMapping("api/apriori")
     public Result apriori(){
         List<Integer> userIdList = userBookService.userIdList();

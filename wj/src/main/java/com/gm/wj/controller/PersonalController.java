@@ -2,17 +2,15 @@ package com.gm.wj.controller;
 
 import com.gm.wj.dao.UserDAO;
 import com.gm.wj.pojo.*;
-import com.gm.wj.result.Result;
-import com.gm.wj.result.ResultFactory;
-import com.gm.wj.service.BookRecommandService;
-import com.gm.wj.service.BookService;
-import com.gm.wj.service.UserBookService;
-import com.gm.wj.service.UserService;
-import com.sun.org.apache.xpath.internal.functions.FuncSubstring;
+import com.gm.wj.service.*;
+import javafx.beans.property.ReadOnlyListProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.security.krb5.internal.crypto.Aes128;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -30,6 +28,8 @@ public class PersonalController {
     UserService userService;
     @Autowired
     BookRecommandService bookRecommandService;
+    @Autowired
+    TopBookService topBookService;
 
     @PostMapping("/api/book")
     public List<Book> getMyBooks( @RequestBody BookUserDTO dto ){
@@ -43,9 +43,16 @@ public class PersonalController {
         List<Book> books = bookService.findAllByBookId (bookIdList);
         return books;
     }
+//////////////////////
+    @PostMapping("api/topbook")
+    public List<Book> geTopBooks() {
+        List<Book> topbook = bookService.findAll();
+            return topbook;
+        }
 
+///////////////////////////
     @PostMapping("/api/recommand")
-    public List<Book> getRecommandBooks( @RequestBody BookUserDTO dto ){
+    public List<Book> getRecommandBooks( @RequestBody BookUserDTO dto){
 //    public List<Book> getRecommandBooks( @RequestParam("userName") String dto ){
         // 通过前端的请求消息（userName,bookID）来切入
 //        User user = userService.findByUserName (dto.getUserName ());

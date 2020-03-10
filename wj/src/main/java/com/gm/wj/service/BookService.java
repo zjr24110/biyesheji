@@ -46,8 +46,29 @@ public class BookService {
 
     public List<Book> findAllByBookId( List<Integer> bookIdList ) {
         Sort sort = new Sort (Sort.Direction.DESC, "id");
-        return bookDAO.findByIdIn (bookIdList,sort);
+        return bookDAO.findByIdIn (bookIdList,sort);}
+
+//////////////////////////////////////
+//        public List<Book> findAllByTimes( List<Integer> bookIdList ) {
+//            Sort sort = new Sort (Sort.Direction.DESC, "readtimes");
+//            return bookDAO.findByTimes(bookIdList,sort); }
+///////////////////////////////////////
 
 
+     public List<Book> findAll() {
+        return bookDAO.findAll();
+      }
+
+
+    public void addTimes( Book book ) {
+        List<Book> results = bookDAO.findAllById (book.getId ());
+        if (results.size ()>0){
+            Book BookNew = results.get (0);
+            BookNew.setRead_times (BookNew.getRead_times ()+1);
+            bookDAO.save(BookNew);
+        }else {
+            book.setRead_times (1);
+            bookDAO.save (book);
+        }
     }
 }

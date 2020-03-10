@@ -1,5 +1,6 @@
 package com.gm.wj.dao;
 
+import com.gm.wj.pojo.User;
 import com.gm.wj.pojo.UserBook;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +17,9 @@ public interface UserBookDAO extends JpaRepository<UserBook,Integer> {
     @Query(value = "select * from user_book as u where u.user_id=?1 and u.book_id=?2",nativeQuery = true)
     List<UserBook> findByUserIdBookId( int userId, int bookId );
 
+    @Query(value = "select * from user_book as u where u.book_id=?1",nativeQuery = true)
+    List<UserBook> findByBookId( int bookId );
+
     @Query(value = "select * from user_book as u where u.user_id=?1",nativeQuery = true)
     List<UserBook> findByUserId( int userId );
 
@@ -24,4 +28,5 @@ public interface UserBookDAO extends JpaRepository<UserBook,Integer> {
 
     @Query(value = "select book_id from user_book where user_id = ?1",nativeQuery = true)
     List<Integer> bookIdList( Integer uid );
+
 }

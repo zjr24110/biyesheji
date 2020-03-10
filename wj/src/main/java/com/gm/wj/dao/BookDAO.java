@@ -17,7 +17,16 @@ import java.util.List;
 
 public interface BookDAO extends JpaRepository<Book,Integer> {
     List<Book> findAllByCategory(Category category);
-    List<Book> findAllByTitleLikeOrAuthorLike(String keyword1, String keyword2);
 
+    List<Book> findAllByTitleLikeOrAuthorLike(String keyword1, String keyword2);
+//    @Query(value = "select * from user_book,book where book.id  =  user_book.id ",nativeQuery = true)
     List<Book> findByIdIn( List<Integer> bookIdList, Sort sort );
+
+//     List<Book> findByTimes( List<Integer> bookIdList, Sort sort );
+@Query(value = "select * from book order by readtimes desc limit 0,8",nativeQuery = true)
+    List<Book> findAll();
+
+    @Query(value = "select * from book where id = ?1",nativeQuery = true)
+    List<Book> findAllById( int Id );
+//
 }

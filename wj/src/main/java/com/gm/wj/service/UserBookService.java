@@ -1,8 +1,10 @@
 package com.gm.wj.service;
 
 import com.gm.wj.dao.BookDAO;
+import com.gm.wj.dao.TopBookDAO;
 import com.gm.wj.dao.UserBookDAO;
 import com.gm.wj.pojo.Book;
+import com.gm.wj.pojo.TopBook;
 import com.gm.wj.pojo.UserBook;
 import org.hibernate.Session;
 import org.hibernate.criterion.Example;
@@ -39,6 +41,8 @@ public class UserBookService {
             userBookDAO.save (userBook);
         }
     }
+
+
     public List<UserBook> findByUserId( int userId ) {
         return userBookDAO.findByUserId(userId);
     }
@@ -55,4 +59,8 @@ public class UserBookService {
         }
         return userIdList;
     }
+
+    public List<UserBook> findByBookId(int bookId)
+    {return userBookDAO.findByBookId(bookId);}
+
 }

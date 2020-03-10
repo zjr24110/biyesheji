@@ -21,13 +21,17 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="cid")
     private Category category;
-
     private String cover;
     private String title;
     private String author;
     private String date;
     private String press;
     private String abs;
+    private int readtimes;
+
+    public int getRead_times() { return readtimes; }
+
+    public void setRead_times( int read_times ) { this.readtimes = read_times; }
 
     public Category getCategory() {
         return category;
