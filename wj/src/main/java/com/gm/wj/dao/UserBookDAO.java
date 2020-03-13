@@ -29,4 +29,7 @@ public interface UserBookDAO extends JpaRepository<UserBook,Integer> {
     @Query(value = "select book_id from user_book where user_id = ?1",nativeQuery = true)
     List<Integer> bookIdList( Integer uid );
 
+    @Query(value = "select DISTINCT book_id from user_book where cid = ?1",nativeQuery = true)
+    List<Integer> selectBookIdByCid( int cid );
+
 }

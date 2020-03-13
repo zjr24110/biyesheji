@@ -27,4 +27,8 @@ public class CategoryService {
         Category c= categoryDAO.findById(id).orElse(null);
         return c;
     }
+
+//    public Category findCidByMajorId(int MajorId) {
+//        return categoryDAO.findByMajorId (MajorId);
+//    }
 }

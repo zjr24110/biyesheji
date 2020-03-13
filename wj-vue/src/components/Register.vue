@@ -20,8 +20,16 @@
                 auto-complete="off" placeholder="电话号码"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-input type="text" v-model="loginForm.major"
-                auto-complete="off" placeholder="专业"></el-input>
+      <!--<el-input type="text" v-model="loginForm.major"-->
+                <!--auto-complete="off" placeholder="专业"></el-input>-->
+      <el-select v-model="loginForm.major" placeholder="请选择专业">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
     </el-form-item>
     <el-form-item style="width: 100%">
       <el-button type="primary" style="width: 40%;background: #505458;border: none" v-on:click="register">注册</el-button>
@@ -33,6 +41,26 @@
   export default{
     data () {
       return {
+        options: [{
+          value: '1',
+          label: '文学'
+        }, {
+          value: '2',
+          label: '流行'
+        }, {
+          value: '3',
+          label: '文化'
+        }, {
+          value: '4',
+          label: '生活'
+        }, {
+          value: '5',
+          label: '经管'
+        }, {
+          value: '6',
+          label: '科技'
+        }
+        ],
         rules: {
           username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
           password: [{required: true, message: '密码不能为空', trigger: 'blur'}]

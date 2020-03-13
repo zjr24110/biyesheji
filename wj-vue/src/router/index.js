@@ -12,6 +12,7 @@ import DashBoard from '../components/admin/dashboard/admin/index'
 import Recommand from '../components/recommand/recommandIndex'
 import History from '../components/history/historyIndex'
 import TopBook from '../components/top/topIndex'
+import MajorRecommand from '../components/recommand/majorRecommandIndex'
 // import ArticleDetails from '../components/jotter/ArticleDetails'
 
 Vue.use(Router)
@@ -76,6 +77,11 @@ export default new Router({
       path: '/top',
       name: 'top',
       component: TopBook
+    },
+    {
+      path: '/majorRecommand',
+      name: 'majorRecommand',
+      component: MajorRecommand
     },
     {
       path: '/login',
@@ -143,6 +149,11 @@ export const createRouter = routes => new Router({
           path: '/top',
           name: 'top',
           component: TopBook
+        },
+        {
+          path: '/majorRecommand',
+          name: 'majorRecommand',
+          component: MajorRecommand
         },
         // {
         //   path: '/jotter',

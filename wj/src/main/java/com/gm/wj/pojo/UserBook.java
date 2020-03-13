@@ -11,15 +11,13 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "user_book")
-@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
+@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class UserBook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
-
     @Column(name = "user_id")
     private int userId;
 
@@ -28,6 +26,17 @@ public class UserBook {
 
     @Column(name = "read_times")
     private int readTimes;
+    @Column(name = "cid")
+    private int cid;
+
+
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid( int cid ) {
+        this.cid = cid;
+    }
 
     public int getId() {
         return id;

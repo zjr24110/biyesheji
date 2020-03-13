@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sun.security.krb5.internal.crypto.Aes128;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,6 +31,8 @@ public class PersonalController {
     BookRecommandService bookRecommandService;
     @Autowired
     TopBookService topBookService;
+    @Autowired
+    CategoryService categoryService;
 
     @PostMapping("/api/book")
     public List<Book> getMyBooks( @RequestBody BookUserDTO dto ){
@@ -44,13 +47,24 @@ public class PersonalController {
         return books;
     }
 //////////////////////
-    @PostMapping("api/topbook")
-    public List<Book> geTopBooks() {
-        List<Book> topbook = bookService.findAll();
-            return topbook;
-        }
-
+    @PostMapping("api/majorRecommand")
+    public List<Book> geTopBooks(@RequestBody BookUserDTO dto) {
+        User user = userService.findByUserName (dto.getUserName ());
+//        Category category = categoryService.findCidByMajorId (user.getMajor ());
+        List<Integer> BookId = userBookService.findBookIdbyCid (user.getMajor ());
+        List<Book> RecommandMajorBooks = bookService.findAllByBookId (BookId);
+        return RecommandMajorBooks;
+    }
 ///////////////////////////
+
+
+/////////////////////
+@PostMapping("api/topbook")
+public List<Book> getMajorBooks() {
+    List<Book> topbook = bookService.findAll();
+    return topbook;
+}
+/////////////////////
     @PostMapping("/api/recommand")
     public List<Book> getRecommandBooks( @RequestBody BookUserDTO dto){
 //    public List<Book> getRecommandBooks( @RequestParam("userName") String dto ){

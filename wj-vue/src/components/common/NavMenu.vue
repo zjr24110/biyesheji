@@ -29,6 +29,7 @@
           {name: '/library', navItem: '图书馆'},
           {name: '/top', navItem: '排行榜'},
           {name: '/recommand', navItem: '推荐中心'},
+          {name: '/majorRecommand', navItem: '专业书籍推荐'},
           {name: '/history', navItem: '阅读历史'},
           {name: '/admin/dashboard', navItem: '个人中心'}
         ],

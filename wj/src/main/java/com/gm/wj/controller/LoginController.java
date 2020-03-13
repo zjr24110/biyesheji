@@ -62,7 +62,7 @@ public class LoginController {
         String username = user.getUsername();
         String name = user.getName();
         String phone = user.getPhone();
-        String major = user.getMajor ();
+        int major = user.getMajor ();
         String password = user.getPassword();
 
         username = HtmlUtils.htmlEscape(username);
@@ -71,7 +71,7 @@ public class LoginController {
         user.setName(name);
         phone = HtmlUtils.htmlEscape(phone);
         user.setPhone(phone);
-        major = HtmlUtils.htmlEscape(major);
+//        major = HtmlUtils.htmlEscape(major);
         user.setMajor (major);
         user.setEnabled(true);
 

@@ -30,19 +30,27 @@ public class UserBookController {
     private BookRecommandService bookRecommandService;
     @Autowired
     private BookService bookService;
+    @Autowired
+    private CategoryService categoryService;
 
     @PostMapping("/api/userBook/add")
     public Result addUserBook( @RequestBody BookUserDTO dto ){
 //        UserBook userBook = JSON.parseObject (data,UserBook.class);
         // TODO: 2020/3/1 找出userid
         User user = userService.findByUserName (dto.getUserName ());
+//        Category category = categoryService.findCidByMajorName (user.getMajor ());
+        Book bookv = bookService.findCidByBookId (dto.getBookID ());
+        Category category = bookv.getCategory ();
         System.out.println (user);
         UserBook userBook = new UserBook ();
         userBook.setUserId (user.getId ());
         userBook.setBookId (dto.getBookID ());
+        userBook.setCid(category.getId ());
+        //排行前八的书对应的次数的增加
         userBookService.addUpdate(userBook);
         TopBook topBook =new TopBook ();
         topBook.setBookId (dto.getBookID ());
+        //图书表的阅读次数的增加
         topBookService.addTopBook (topBook);
         Book book = new Book ();
         book.setId (dto.getBookID ());

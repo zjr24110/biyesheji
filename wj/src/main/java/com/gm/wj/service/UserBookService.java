@@ -63,4 +63,9 @@ public class UserBookService {
     public List<UserBook> findByBookId(int bookId)
     {return userBookDAO.findByBookId(bookId);}
 
+    public List<Integer> findBookIdbyCid(int bookId)
+    {return userBookDAO.selectBookIdByCid (bookId);}
+
+
+
 }

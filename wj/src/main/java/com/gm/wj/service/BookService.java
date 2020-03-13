@@ -71,4 +71,8 @@ public class BookService {
             bookDAO.save (book);
         }
     }
+
+    public Book findCidByBookId(int id) {
+        return bookDAO.findById (id);
+    }
 }
