@@ -25,7 +25,7 @@
     data () {
       return {
         navList: [
-          {name: '/index', navItem: '首页'},
+          // {name: '/index', navItem: '首页'},
           {name: '/library', navItem: '图书馆'},
           {name: '/top', navItem: '排行榜'},
           {name: '/recommand', navItem: '推荐中心'},

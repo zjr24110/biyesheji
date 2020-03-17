@@ -5,7 +5,6 @@
   </div>
 </template>
 <script>
-
   import NavMenu from '@/components/common/NavMenu'
   export default {
     components: {NavMenu}

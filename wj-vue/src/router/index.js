@@ -23,8 +23,8 @@ export default new Router({
     {
       path: '/',
       name: 'Default',
-      redirect: '/home',
-      component: Home
+      redirect: '/library',
+      component: LibraryIndex
     },
     {
       // home页面并不需要被访问，只是作为其它组件的父组件
@@ -38,6 +38,11 @@ export default new Router({
           name: 'AppIndex',
           component: AppIndex
         },
+        // {
+        //   path: '/admin/dashboard',
+        //   name: 'dashboard',
+        //   component: DashBoard
+        // },
         // {
         //   path: '/jotter',
         //   name: 'Jotter',
@@ -102,7 +107,18 @@ export default new Router({
       },
       children: [
         {
+          // path: '/admin/dashboard',
+          path: '/library',
+          // name: 'dashboard',
+          name: 'Library',
+          component: LibraryIndex,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
           path: '/admin/dashboard',
+          // name: 'dashboard',
           name: 'dashboard',
           component: DashBoard,
           meta: {
@@ -120,8 +136,8 @@ export const createRouter = routes => new Router({
     {
       path: '/',
       name: 'Default',
-      redirect: '/home',
-      component: Home
+      redirect: '/library',
+      component: LibraryIndex
     },
     {
       // home页面并不需要被访问，只是作为其它组件的父组件
@@ -135,6 +151,11 @@ export const createRouter = routes => new Router({
           name: 'AppIndex',
           component: AppIndex
         },
+        // {
+        //   path: '/admin/dashboard',
+        //   name: 'dashboard',
+        //   component: DashBoard
+        // },
         {
           path: '/recommand',
           name: 'recommand',
@@ -199,7 +220,17 @@ export const createRouter = routes => new Router({
       },
       children: [
         {
+          path: '/library',
+          // name: 'dashboard',
+          name: 'Library',
+          component: LibraryIndex,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
           path: '/admin/dashboard',
+          // name: 'dashboard',
           name: 'dashboard',
           component: DashBoard,
           meta: {

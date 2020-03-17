@@ -1,5 +1,9 @@
 <template>
   <div>
+    <!--//////-->
+    <nav-menu class="nav-menu"></nav-menu>
+    <router-view/>
+    <!--router-view显示的是当前路由地址所对应的内容-->
     <el-row style="height: 840px;">
       <view-switch class="switch"></view-switch>
       <el-tooltip effect="dark" placement="right"
@@ -31,7 +35,7 @@
         </el-card>
       </el-tooltip>
     </el-row>
-    <el-row>
+    <el-row >
       <el-pagination
         @current-change="handleCurrentChange"
         :current-page="currentPage"
@@ -43,7 +47,13 @@
 </template>
 
 <script>
+  // dafafdsfasf
+  import NavMenu from '@/components/common/NavMenu'
+  // dfafafasdsaff
   export default {
+    // dsfsadfasdfas
+    components: {NavMenu},
+    // ddfsadfsdfa
     name: 'majorRecommand',
     data () {
       return {
@@ -55,37 +65,37 @@
     mounted: function () {
       this.loadBooks()
     },
-    methods: {
-      loadBooks () {
-        var user = JSON.parse(localStorage.getItem('user'))
-        var _this = this
-        this.$axios.post('/majorRecommand', {
-          userName: user.username,
-          bookID: 1
-        }).then(resp => {
-          if (resp && resp.status === 200) {
-            _this.books = resp.data
-          }
-        })
-      },
-      handleCurrentChange: function (currentPage) {
-        this.currentPage = currentPage
-      },
-      DoSth (bid) {
-        var user = JSON.parse(localStorage.getItem('user'))
-        alert(bid + user.username)
-        this.$axios
-          .post('/userBook/add', {
+      methods: {
+        loadBooks () {
+          var user = JSON.parse(localStorage.getItem('user'))
+          var _this = this
+          this.$axios.post('/majorRecommand', {
             userName: user.username,
-            bookID: bid
+            bookID: 1
           }).then(resp => {
-          if (resp && resp.status === 200) {
-            alert('阅览成功')
-          }
-        })
+            if (resp && resp.status === 200) {
+              _this.books = resp.data
+            }
+          })
+        },
+        handleCurrentChange: function (currentPage) {
+          this.currentPage = currentPage
+        },
+        DoSth (bid) {
+          var user = JSON.parse(localStorage.getItem('user'))
+          alert(bid + user.username)
+          this.$axios
+            .post('/userBook/add', {
+              userName: user.username,
+              bookID: bid
+            }).then(resp => {
+            if (resp && resp.status === 200) {
+              alert('阅览成功')
+            }
+          })
+        }
       }
     }
-  }
 </script>
 <style scoped>
 
@@ -149,5 +159,9 @@
   a:link, a:visited, a:focus {
     color: #3377aa;
   }
-
+  /*dfafdsfafsd*/
+  .nav-menu {
+    /*margin-bottom: 40px;*/
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+  }
 </style>

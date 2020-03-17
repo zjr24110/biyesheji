@@ -42,14 +42,14 @@
 
 <script>
 // import GithubCorner from '@/components/GithubCorner'
-import PanelGroup from './components/PanelGroup'
-import RaddarChart from './components/RaddarChart'
-import PieChart from './components/PieChart'
-import LineChart from './components/LineChart'
-import BarChart from './components/BarChart'
-import TransactionTable from './components/TransactionTable'
-import TodoList from './components/TodoList'
-import BoxCard from './components/BoxCard'
+// import PanelGroup from './components/PanelGroup'
+// import RaddarChart from './components/RaddarChart'
+// import PieChart from './components/PieChart'
+// import LineChart from './components/LineChart'
+// import BarChart from './components/BarChart'
+// import TransactionTable from './components/TransactionTable'
+// import TodoList from './components/TodoList'
+// import BoxCard from './components/BoxCard'
 
 const lineChartData = {
   newVisitis: {
@@ -73,15 +73,23 @@ const lineChartData = {
 export default {
   name: 'DashboardAdmin',
   components: {
-    // GithubCorner,
-    PanelGroup,
-    RaddarChart,
-    LineChart,
-    PieChart,
-    BarChart,
-    TransactionTable,
-    TodoList,
-    BoxCard
+    // // GithubCorner,
+    // PanelGroup,
+    // // 专题小组
+    // RaddarChart,
+    // // 雷达图
+    // LineChart,
+    // // 折线图
+    // PieChart,
+    // // 饼形图
+    // BarChart,
+    // // 棒形图
+    // TransactionTable,
+    // // 事物表
+    // TodoList,
+    // // 任务列表
+    // BoxCard
+    // // 箱卡
   },
   data () {
     return {

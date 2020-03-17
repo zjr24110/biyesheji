@@ -1,5 +1,9 @@
 <template>
   <div>
+    <!--//////-->
+    <nav-menu class="nav-menu"></nav-menu>
+    <router-view/>
+    <!--//////-->
     <el-row style="height: 840px;">
       <view-switch class="switch"></view-switch>
       <el-tooltip effect="dark" placement="right"
@@ -43,13 +47,19 @@
 </template>
 
 <script>
+  // dafafdsfasf
+  import NavMenu from '@/components/common/NavMenu'
+  // dfafafasdsaff
   export default {
+    // dsfsadfasdfas
+    components: {NavMenu},
+    // ddfsadfsdfa
     name: 'top',
     data () {
       return {
         books: [],
         currentPage: 1,
-        pagesize: 18,
+        pagesize: 8,
         sortType: 'read_times'
       }
     },
@@ -150,5 +160,8 @@
   a:link, a:visited, a:focus {
     color: #3377aa;
   }
-
+  .nav-menu {
+    /*margin-bottom: 40px;*/
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+  }
 </style>
