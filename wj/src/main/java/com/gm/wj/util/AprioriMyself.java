@@ -1,5 +1,4 @@
 package com.gm.wj.util; /**
- * Created by 李勇志 on 2016/12/6.
  * 2014301500370
  *
  * 本工程包含两个数据文件
@@ -9,7 +8,6 @@ package com.gm.wj.util; /**
  */
 
 import com.gm.wj.pojo.BookRecommand;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
