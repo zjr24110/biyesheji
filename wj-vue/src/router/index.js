@@ -13,10 +13,10 @@ import Recommand from '../components/recommand/recommandIndex'
 import History from '../components/history/historyIndex'
 import TopBook from '../components/top/topIndex'
 import MajorRecommand from '../components/recommand/majorRecommandIndex'
+// import Personal from '../components/admin/PersonalIndex'
 // import ArticleDetails from '../components/jotter/ArticleDetails'
 
 Vue.use(Router)
-
 export default new Router({
   mode: 'history',
   routes: [

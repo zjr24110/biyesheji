@@ -2,6 +2,7 @@ package com.gm.wj.service;
 
 import com.gm.wj.dao.UserDAO;
 import com.gm.wj.pojo.AdminRole;
+import com.gm.wj.pojo.Category;
 import com.gm.wj.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,8 @@ public class UserService {
         userDAO.save(user);
     }
 
-
+    ////////////动手
+    public List<User> selecUserMessagetByUserName(String username){
+        return userDAO.selecUserMessagetByUserName (username);
+    }
 }

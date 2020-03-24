@@ -33,7 +33,7 @@ public class PersonalController {
     TopBookService topBookService;
     @Autowired
     CategoryService categoryService;
-
+///////////////////用户历史阅读的书籍
     @PostMapping("/api/book")
     public List<Book> getMyBooks( @RequestBody BookUserDTO dto ){
         // 通过前端的请求消息（userName,bookID）来切入
@@ -46,7 +46,7 @@ public class PersonalController {
         List<Book> books = bookService.findAllByBookId (bookIdList);
         return books;
     }
-//////////////////////
+//////////////////////专业推荐书籍
     @PostMapping("api/majorRecommand")
     public List<Book> geTopBooks(@RequestBody BookUserDTO dto) {
         User user = userService.findByUserName (dto.getUserName ());
@@ -58,13 +58,13 @@ public class PersonalController {
 ///////////////////////////
 
 
-/////////////////////
+/////////////////////排行榜书籍
 @PostMapping("api/topbook")
 public List<Book> getMajorBooks() {
     List<Book> topbook = bookService.findAll();
     return topbook;
 }
-/////////////////////
+/////////////////////根据aprori关联规则算法推荐书籍
     @PostMapping("/api/recommand")
     public List<Book> getRecommandBooks( @RequestBody BookUserDTO dto){
 //    public List<Book> getRecommandBooks( @RequestParam("userName") String dto ){
