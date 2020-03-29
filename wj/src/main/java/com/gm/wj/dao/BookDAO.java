@@ -23,7 +23,7 @@ public interface BookDAO extends JpaRepository<Book,Integer> {
     List<Book> findByIdIn( List<Integer> bookIdList, Sort sort );
 
 //     List<Book> findByTimes( List<Integer> bookIdList, Sort sort );
-@Query(value = "select * from book order by readtimes desc limit 0,8",nativeQuery = true)
+    @Query(value = "select * from book order by readtimes desc limit 0,8",nativeQuery = true)
     List<Book> findAll();
 
     @Query(value = "select * from book where id = ?1",nativeQuery = true)
@@ -31,4 +31,8 @@ public interface BookDAO extends JpaRepository<Book,Integer> {
 
     @Query(value = "select * from book where id = ?1",nativeQuery = true)
     Book findById( int Id );
+
+    //记录所有书籍的id
+    @Query(value = "select distinct id from book",nativeQuery = true)
+    List<Integer> findAllById();
 }

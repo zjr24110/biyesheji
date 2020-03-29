@@ -1,17 +1,9 @@
 package com.gm.wj.service;
-
 import com.gm.wj.dao.BookDAO;
-import com.gm.wj.dao.TopBookDAO;
 import com.gm.wj.dao.UserBookDAO;
-import com.gm.wj.pojo.Book;
-import com.gm.wj.pojo.TopBook;
 import com.gm.wj.pojo.UserBook;
-import org.hibernate.Session;
-import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.security.krb5.internal.tools.Klist;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,14 +12,13 @@ import java.util.List;
  * @version 1.0
  * @date 2020/2/29 13:17
  */
-@Service
-public class UserBookService {
 
+@Service
+public  class UserBookService {
     @Autowired
     UserBookDAO userBookDAO;
     @Autowired
     BookDAO bookDAO;
-
 
     public void addUpdate( UserBook userBook ) {
         // TODO: 2020/2/29 首先根据userid和bookid查UserBook是否存在这条记录
@@ -47,8 +38,8 @@ public class UserBookService {
         return userBookDAO.findByUserId(userId);
     }
 
-    public List<Integer> userIdList() {
-        return userBookDAO.userIdList();
+    public List< Integer> userIdList() {
+        return userBookDAO.findDistinctByUserId();
     }
 
     public List<String> bookIdList( Integer uid ) {
@@ -66,6 +57,18 @@ public class UserBookService {
     public List<Integer> findBookIdbyCid(int bookId)
     {return userBookDAO.selectBookIdByCid (bookId);}
 
+    ///////////////计算当前用户的总数
+    public int CountUserId(){
+        return userBookDAO.countByUserId();
+    }
 
+    //////////////找出用户读过的所有书籍的id
+    public List<String> BooksIdList(int userID){
+        return userBookDAO.booksIdList(userID);
+    }
 
+    /////////////计算出用户所有书籍的总数
+    public int CountBooksId(int userId){
+        return userBookDAO.countByBooksId (userId);
+    }
 }

@@ -1,7 +1,6 @@
 package com.gm.wj.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,9 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 @JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
-
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -27,22 +24,28 @@ public class User {
     private String phone;
     private int major;
     private boolean enabled;
+    private String profession;
     @Transient
     private List<AdminRole> roles;
-
-    // 默认构造函数
+        // 默认构造函数
     public User() {}
-
-
-
-    // 用于配合自定义查询的构造函数
-    public User(int id,String username, String name, String phone, int major, boolean enabled) {
+        // 用于配合自定义查询的构造函数
+    public User(int id,String username, String name, String phone, int major, boolean enabled,String profession) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.phone = phone;
         this.major = major;
         this.enabled = enabled;
+        this.profession = profession;
+
+    }
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession( String profession ) {
+        this.profession = profession;
     }
 
     public int getId() {

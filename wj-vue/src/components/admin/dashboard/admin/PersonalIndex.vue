@@ -30,7 +30,7 @@
           fit>
         </el-table-column>
         <el-table-column
-          prop="major"
+          prop="profession"
           label="专业"
           show-overflow-tooltip
           fit>

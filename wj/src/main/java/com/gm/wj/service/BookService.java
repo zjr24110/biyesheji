@@ -75,4 +75,10 @@ public class BookService {
     public Book findCidByBookId(int id) {
         return bookDAO.findById (id);
     }
+
+    //////////////所有书籍的id
+    public List< Integer> bookIdList() {
+        return bookDAO.findAllById ();
+    }
+
 }

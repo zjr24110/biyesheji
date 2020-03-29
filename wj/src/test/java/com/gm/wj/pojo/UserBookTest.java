@@ -2,7 +2,6 @@ package com.gm.wj.pojo;
 
 import antlr.StringUtils;
 import com.alibaba.fastjson.JSON;
-import com.mysql.cj.jdbc.integration.jboss.ExtendedMysqlExceptionSorter;
 import org.junit.Test;
 import org.springframework.boot.test.json.JsonbTester;
 

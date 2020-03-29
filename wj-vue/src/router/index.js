@@ -22,9 +22,9 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Default',
-      redirect: '/library',
-      component: LibraryIndex
+      name: 'Login',
+      redirect: '/Login',
+      component: Login
     },
     {
       // home页面并不需要被访问，只是作为其它组件的父组件
@@ -136,8 +136,8 @@ export const createRouter = routes => new Router({
     {
       path: '/',
       name: 'Default',
-      redirect: '/library',
-      component: LibraryIndex
+      redirect: '/Login',
+      component: Login
     },
     {
       // home页面并不需要被访问，只是作为其它组件的父组件

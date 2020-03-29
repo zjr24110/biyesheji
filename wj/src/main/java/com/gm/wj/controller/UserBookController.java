@@ -4,6 +4,8 @@ import com.gm.wj.result.Result;
 import com.gm.wj.result.ResultFactory;
 import com.gm.wj.service.*;
 import com.gm.wj.util.AprioriMyself;
+import org.apache.commons.collections.ArrayStack;
+import org.elasticsearch.common.recycler.Recycler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +23,6 @@ public class UserBookController {
 
     @Autowired
     private UserBookService userBookService;
-
     @Autowired
     private UserService userService;
     @Autowired
@@ -32,6 +33,10 @@ public class UserBookController {
     private BookService bookService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private UserToBooksService userToBooksService;
+    @Autowired
+    private  BookToUsersService bookToUsersService;
 
     @PostMapping("/api/userBook/add")
     public Result addUserBook( @RequestBody BookUserDTO dto ){
@@ -55,18 +60,38 @@ public class UserBookController {
         Book book = new Book ();
         book.setId (dto.getBookID ());
         bookService.addTimes(book);
+
+        //记录一个用户所读过的书籍
+        UserToBooks userToBooks =new UserToBooks ();
+        userToBooks.setUser_id (user.getId ());
+        List<Integer> AllUserId = userToBooksService.findAllUserId ();//查找user_to_books中所有的用户id
+        List<String> AllUserBooksId = userBookService.BooksIdList(user.getId ());//根据传入的userID查找出该用户看过的所有书籍的id
+        String alluserBooksId = AllUserBooksId.toString ();
+        String a = alluserBooksId.replace("[","").replace ("]","").replace(",","");
+        System.out.println(alluserBooksId);
+        ////////////////////////////把用户ID存入user_to_books中，并且不能重复
+        if(!AllUserId.contains(user.getId ()))
+        {
+            userToBooksService.addOrUpdate (userToBooks);
+        }
+        userToBooksService.updatebooksIdByUserId(a,user.getId ());
+        int booksIdCount =userBookService.CountBooksId(user.getId ());
+        userToBooksService.updatebooksIdCountByUserId (booksIdCount,user.getId ());
+
+        //一本书籍以及其所对应的所有用户
+        List<BookToUsers> list = new ArrayList();
+        List<Integer> bookIdList = bookService.bookIdList();
+        List<Integer> OldbookIdList = bookToUsersService.bookIdList();
+        for (int i = 0;i<bookIdList.size ();i++){
+                  BookToUsers bookToUsers = new BookToUsers ();
+              if (!OldbookIdList.contains (bookIdList.get (i))) {
+                  bookToUsers.setBook_id (bookIdList.get (i));
+                  bookToUsersService.addOrUpdate (bookToUsers);
+              }
+            }
         return ResultFactory.buildSuccessResult (null);
     }
-//    /////////////////////////////
-//    @PostMapping("api/topbook/add")
-//    public Result addTopBook( @RequestBody UserBook dto){
-//        TopBook topBook = new TopBook ();
-//        topBook.setBookId (dto.getBookId ());
-//        topBook.setReadTimes (dto.getReadTimes ());
-//        topBookService.addTopBook (topBook);
-//        return ResultFactory.buildSuccessResult (null);
-//    }
-//    ///////////////////////////////
+
     @PostMapping("api/apriori")
     public Result apriori(){
         List<Integer> userIdList = userBookService.userIdList();
@@ -80,7 +105,6 @@ public class UserBookController {
         AprioriMyself.record = data;
         AprioriMyself.Apriori();//调用Apriori算法获得频繁项集
         System.out.println("频繁模式挖掘完毕。\n\n\n\n\n进行关联度挖掘，最小支持度百分比为："+AprioriMyself.MIN_SUPPROT+"  最小置信度为："+AprioriMyself.MIN_CONFIDENCE);
-
         List<BookRecommand> recommands = new ArrayList<> ();
         AprioriMyself.AssociationRulesMining(recommands);//挖掘关联规则
         if (recommands.size ()>0){

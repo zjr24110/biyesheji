@@ -1,17 +1,11 @@
 package com.gm.wj.controller;
 
-import com.gm.wj.dao.UserDAO;
+
 import com.gm.wj.pojo.*;
 import com.gm.wj.service.*;
-import javafx.beans.property.ReadOnlyListProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.security.krb5.internal.crypto.Aes128;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -85,7 +79,7 @@ public List<Book> getMajorBooks() {
         if (bookRecommandList.size ()>0){
             bookRecommand = bookRecommandList.get (0);
             String bookIdListStr = bookRecommand.getResultBooks ();
-            //
+            //把输出带有[]的格式的数据变为无[]的格式的数据
             String a = bookIdListStr.replace("[","").replace ("]","");
             String[] b = a.split(",");
             for (String bccc:b){

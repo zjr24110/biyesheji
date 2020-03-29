@@ -1,7 +1,6 @@
 package com.gm.wj.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 
 /**

@@ -64,7 +64,6 @@ public class LoginController {
         String phone = user.getPhone();
         int major = user.getMajor ();
         String password = user.getPassword();
-
         username = HtmlUtils.htmlEscape(username);
         user.setUsername(username);
         name = HtmlUtils.htmlEscape(name);

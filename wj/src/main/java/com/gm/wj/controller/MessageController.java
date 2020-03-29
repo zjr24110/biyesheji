@@ -1,6 +1,8 @@
 package com.gm.wj.controller;
 import com.gm.wj.pojo.BookUserDTO;
+import com.gm.wj.pojo.Category;
 import com.gm.wj.pojo.User;
+import com.gm.wj.service.CategoryService;
 import com.gm.wj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +18,15 @@ import java.util.List;
 public class MessageController {
     @Autowired
     UserService userService;
-    @PostMapping("/api/users")
-    public List<User> user( @RequestBody BookUserDTO user){
+    @Autowired
+    CategoryService categoryService;
+//    @PostMapping("/api/users")
+//    public List<User> user( @RequestBody BookUserDTO user){
 //    public User user( @RequestParam("user") User user){
-        return userService.selecUserMessagetByUserName (user.getUserName ());
-    }
+//        User user2 = userService.findProfessionByMajor (user.getUserName ());
+//        userService.addOrUpdate (user2);
+//        return userService.selecUserMessagetByUserName (user.getUserName ());
+//    }
     @GetMapping("/api/updatePassword")
     public String updatePassword( @RequestBody User user ) {
         User user1 = userService.findByUserName (user.getUsername ());
@@ -29,6 +35,17 @@ public class MessageController {
 //        String message = "用户" + user.getUsername () + "状态更新成功";
 //        return ResultFactory.buildSuccessResult (message);
         return user.getPassword ();
+    }
+
+
+    //获取当前登录用户的信息
+    @PostMapping("/api/users")
+    public List<User> haha( @RequestBody BookUserDTO user){
+        User user2 = userService.findByUserName (user.getUserName ());
+        Category category2 = categoryService.get (user2.getMajor ());
+        user2.setProfession (category2.getName ());
+        userService.addOrUpdate (user2);
+        return userService.selecUserMessagetByUserName (user.getUserName ());
     }
 }
 
