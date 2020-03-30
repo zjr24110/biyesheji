@@ -1,7 +1,6 @@
 package com.gm.wj.service;
 
 import com.gm.wj.dao.UserToBooksDAO;
-import com.gm.wj.pojo.UserBook;
 import com.gm.wj.pojo.UserToBooks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,9 @@ public class UserToBooksService {
     @Autowired
     UserToBooksDAO userToBooksDAO;
 
-        public void addOrUpdate(UserToBooks userToBooks) {
+
+
+    public void addOrUpdate(UserToBooks userToBooks) {
             userToBooksDAO.save (userToBooks);
         }
 
@@ -34,6 +35,7 @@ public class UserToBooksService {
         public void updatebooksIdCountByUserId(int booksIdcount,  int userId){
         userToBooksDAO.updatebooksCountIdByUserId (booksIdcount,userId);
     }
+
 
 }
 

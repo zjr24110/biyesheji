@@ -3,8 +3,10 @@ package com.gm.wj.dao;
 import com.gm.wj.pojo.BookToUsers;
 import com.gm.wj.pojo.UserToBooks;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -16,4 +18,10 @@ public interface BookToUsersDAO extends JpaRepository<BookToUsers,Integer> {
     //记录所有书籍的id
     @Query(value = "select distinct book_id from book_to_users",nativeQuery = true)
     List<Integer> findAllById();
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update book_to_users as p set p.users_id =?1 where p.book_id =?2",nativeQuery = true)
+    void updatebooksCountIdByUserId(String usersId,int BookId);
+
 }

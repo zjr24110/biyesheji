@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +33,6 @@ public class UserBookController {
     private BookRecommandService bookRecommandService;
     @Autowired
     private BookService bookService;
-    @Autowired
-    private CategoryService categoryService;
     @Autowired
     private UserToBooksService userToBooksService;
     @Autowired
@@ -61,7 +61,7 @@ public class UserBookController {
         book.setId (dto.getBookID ());
         bookService.addTimes(book);
 
-        //记录一个用户所读过的书籍
+        //1.记录一个用户所读过的书籍
         UserToBooks userToBooks =new UserToBooks ();
         userToBooks.setUser_id (user.getId ());
         List<Integer> AllUserId = userToBooksService.findAllUserId ();//查找user_to_books中所有的用户id
@@ -78,17 +78,26 @@ public class UserBookController {
         int booksIdCount =userBookService.CountBooksId(user.getId ());
         userToBooksService.updatebooksIdCountByUserId (booksIdCount,user.getId ());
 
-        //一本书籍以及其所对应的所有用户
+        //2.一本书籍以及其所对应的所有用户
         List<BookToUsers> list = new ArrayList();
         List<Integer> bookIdList = bookService.bookIdList();
         List<Integer> OldbookIdList = bookToUsersService.bookIdList();
         for (int i = 0;i<bookIdList.size ();i++){
                   BookToUsers bookToUsers = new BookToUsers ();
+                  //用最新user_book表与旧表对比，把新表中的新数据存入，更新
               if (!OldbookIdList.contains (bookIdList.get (i))) {
                   bookToUsers.setBook_id (bookIdList.get (i));
                   bookToUsersService.addOrUpdate (bookToUsers);
               }
             }
+            //存入书籍对应的所有用户id
+        for (int i = 0;i<bookIdList.size ();i++){
+            List<Integer> UsersId = userBookService.findUserIdsByBookId(bookIdList.get (i));
+            String b = UsersId.toString ();
+            String c = b.replace("[","").replace ("]","").replace(",","");
+//            System.out.println(c);
+            bookToUsersService.updateusersIdCountBybookId (c,bookIdList.get (i));
+        }
         return ResultFactory.buildSuccessResult (null);
     }
 

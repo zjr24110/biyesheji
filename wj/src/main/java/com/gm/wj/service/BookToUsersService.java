@@ -23,4 +23,8 @@ public class BookToUsersService {
     public List< Integer> bookIdList() {
         return bookToUsersDAO.findAllById();
     }
+
+    public void updateusersIdCountBybookId(  String usersId,int bookId){
+        bookToUsersDAO.updatebooksCountIdByUserId (usersId,bookId);
+    }
 }

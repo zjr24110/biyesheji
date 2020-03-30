@@ -71,4 +71,9 @@ public  class UserBookService {
     public int CountBooksId(int userId){
         return userBookDAO.countByBooksId (userId);
     }
+
+    //找到每本书的读者们的id，不重复
+    public List<Integer> findUserIdsByBookId(int bookID) {
+        return userBookDAO.findAllByBookId (bookID);
+    }
 }

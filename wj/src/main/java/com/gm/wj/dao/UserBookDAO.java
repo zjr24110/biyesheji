@@ -29,13 +29,21 @@ public interface UserBookDAO extends JpaRepository<UserBook,Integer> {
 
     @Query(value = "select DISTINCT book_id from user_book where cid = ?1",nativeQuery = true)
     List<Integer> selectBookIdByCid( int cid );
+
       //查找有阅读记录的用户的总数
     @Query(value = "select COUNT(DISTINCT user_id) FROM user_book ",nativeQuery = true)
     int countByUserId();
+
     //通过user_id查找出用户看过的书籍id，并且不能重复
     @Query(value = "select DISTINCT book_id from user_book where user_id = ?1",nativeQuery = true)
     List<String> booksIdList(int userId);
+
     //查找有阅读记录的用户的书籍总数
     @Query(value = "select COUNT(DISTINCT book_id) FROM user_book where user_id=?1 ",nativeQuery = true)
     int countByBooksId(int userId);
+
+    //找出一本书籍对应的所有用户ID
+    @Query(value = "select distinct user_id from user_book where book_id =?1 ",nativeQuery = true)
+    List<Integer> findAllByBookId(int bookId);
+
 }
