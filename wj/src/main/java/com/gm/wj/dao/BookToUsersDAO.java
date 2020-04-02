@@ -24,4 +24,9 @@ public interface BookToUsersDAO extends JpaRepository<BookToUsers,Integer> {
     @Query(value = "update book_to_users as p set p.users_id =?1 where p.book_id =?2",nativeQuery = true)
     void updatebooksCountIdByUserId(String usersId,int BookId);
 
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update book_to_users as p set p.users_id_count =?1 where p.book_id =?2",nativeQuery = true)
+    void updateUsersCountIdByBookId( int usersIdCount, int bookId );
 }

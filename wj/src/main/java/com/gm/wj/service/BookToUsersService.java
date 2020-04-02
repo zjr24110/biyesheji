@@ -27,4 +27,9 @@ public class BookToUsersService {
     public void updateusersIdCountBybookId(  String usersId,int bookId){
         bookToUsersDAO.updatebooksCountIdByUserId (usersId,bookId);
     }
-}
+
+    public void updateUsersIdCountByBookId( int UsersIdCount, int bookId ) {
+            bookToUsersDAO.updateUsersCountIdByBookId (UsersIdCount,bookId);
+        }
+    }
+

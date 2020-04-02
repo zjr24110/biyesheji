@@ -29,6 +29,7 @@ public class Book {
     private String abs;
     private int readtimes;
 
+
     public int getRead_times() { return readtimes; }
 
     public void setRead_times( int read_times ) { this.readtimes = read_times; }

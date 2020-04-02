@@ -19,6 +19,15 @@ public class BookToUsers {
     private int id;
     private int book_id;
     private String users_id;
+    private int users_id_count;
+
+    public int getUsers_id_count() {
+        return users_id_count;
+    }
+
+    public void setUsers_id_count( int users_id_count ) {
+        this.users_id_count = users_id_count;
+    }
 
     public int getId() {
         return id;

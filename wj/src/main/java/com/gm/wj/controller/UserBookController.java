@@ -4,14 +4,10 @@ import com.gm.wj.result.Result;
 import com.gm.wj.result.ResultFactory;
 import com.gm.wj.service.*;
 import com.gm.wj.util.AprioriMyself;
-import org.apache.commons.collections.ArrayStack;
-import org.elasticsearch.common.recycler.Recycler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,7 +93,11 @@ public class UserBookController {
             String c = b.replace("[","").replace ("]","").replace(",","");
 //            System.out.println(c);
             bookToUsersService.updateusersIdCountBybookId (c,bookIdList.get (i));
+
         }
+           int usersIdCount = userBookService.CountUsersId(dto.getBookID ());
+           System.out.println(usersIdCount);
+           bookToUsersService.updateUsersIdCountByBookId (usersIdCount,dto.getBookID ());
         return ResultFactory.buildSuccessResult (null);
     }
 
@@ -121,6 +121,12 @@ public class UserBookController {
         }
         return ResultFactory.buildSuccessResult (recommands);
     }
+
+//    @PostMapping("api/CF")
+//    public void cf(){
+//        CF cf = new CF ();
+//        cf.CF (24,userBookService.CountUserId (),userToBooksService.findAllUserId (),userToBooksService.findAllBybookid(),17);
+//    }
 
 }
 

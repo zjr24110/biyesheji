@@ -29,9 +29,18 @@
           <!--<div class="author">-->
           <!--<a href="">{{item.author}}</a>-->
           <!--</div>-->
-          <div class="button">
+          <div class="button" >
             <el-button size="mini" type="primary" icon="el-icon-plus" circle v-on:click="DoSth(item.id)"></el-button>
           </div>
+          <!--/////////////////////////////-->
+          <!--<div class="app" >-->
+            <!--<el-rate-->
+              <!--v-model="value"-->
+              <!--show-text-->
+              <!--:texts="texts">-->
+              <!--</el-rate>-->
+          <!--</div>-->
+          <!--//////////////////////////////-->
         </el-card>
       </el-tooltip>
     </el-row>
@@ -55,13 +64,16 @@
     components: {NavMenu},
     // ddfsadfsdfa
     name: 'history',
+    /// //////////
     data () {
       return {
         books: [],
         currentPage: 1,
-        pagesize: 18
-      }
-    },
+        pagesize: 18,
+        // /// /////////
+        // texts: ['1', '2', '3', '4', '5']
+  }
+  },
     mounted: function () {
       this.loadBooks()
     },
@@ -164,4 +176,14 @@
     /*margin-bottom: 40px;*/
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
   }
+  /*!**!*/
+  /*.button{*/
+    /*float: right;*/
+    /*width: 16%;*/
+  /*}*/
+  /*.app{*/
+    /*float: left;*/
+    /*width: 84%;*/
+    /*height: 50%;*/
+  /*}*/
 </style>

@@ -36,6 +36,14 @@ public class UserToBooksService {
         userToBooksDAO.updatebooksCountIdByUserId (booksIdcount,userId);
     }
 
+        public List<String> findAllBybookid(){
+        return userToBooksDAO.findAllBybookid ();
+    }
+
+        public int findbooksidCount(int userid){
+        return userToBooksDAO.findByUserID(userid);
+        }
+
 
 }
 

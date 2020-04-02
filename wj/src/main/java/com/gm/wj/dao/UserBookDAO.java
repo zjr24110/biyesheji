@@ -3,6 +3,7 @@ import com.gm.wj.pojo.UserBook;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,4 +47,11 @@ public interface UserBookDAO extends JpaRepository<UserBook,Integer> {
     @Query(value = "select distinct user_id from user_book where book_id =?1 ",nativeQuery = true)
     List<Integer> findAllByBookId(int bookId);
 
+    //算法需要
+    @Query(value = "select DISTINCT book_id from user_book where user_id = ?1",nativeQuery = true)
+    ArrayList<UserBook> findLikesByUser(int user);
+
+    //查找该本书籍对应的用户的总数
+    @Query(value = "select COUNT(DISTINCT user_id) FROM user_book where book_id=?1 ",nativeQuery = true)
+    int countByUsersId( Integer bookID );
 }

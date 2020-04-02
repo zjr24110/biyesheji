@@ -76,4 +76,9 @@ public  class UserBookService {
     public List<Integer> findUserIdsByBookId(int bookID) {
         return userBookDAO.findAllByBookId (bookID);
     }
+
+    ////////////计算出这本书籍对应的所有用户的总数
+    public int CountUsersId( Integer bookID ) {
+        return userBookDAO.countByUsersId (bookID);
+    }
 }

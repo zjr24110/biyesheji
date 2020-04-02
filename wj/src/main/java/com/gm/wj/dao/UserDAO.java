@@ -4,6 +4,7 @@ import com.gm.wj.pojo.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,11 @@ public interface UserDAO extends JpaRepository<User,Integer> {
     @Query(value = "select * from user where username = ?1",nativeQuery = true )
     List<User> selecUserMessagetByUserName( String username );
 
+
+
+    //////////////getAllUsersId
+    @Query(value = "select distinct id from user",nativeQuery = true )
+    ArrayList<User> getAllUsers();
 //
 //    @Query(value = "update user INNER JOIN category ON user.major = category.id SET user.profession = category.name",nativeQuery = true )
 //    void updateStateBy(String username);

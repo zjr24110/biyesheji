@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,4 +36,9 @@ public interface BookDAO extends JpaRepository<Book,Integer> {
     //记录所有书籍的id
     @Query(value = "select distinct id from book",nativeQuery = true)
     List<Integer> findAllById();
+
+    //getAllbooksId
+    @Query(value = "select distinct id from book",nativeQuery = true)
+    ArrayList<Book> getAllBooks();
+
 }
