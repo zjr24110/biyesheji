@@ -31,5 +31,8 @@ public class BookToUsersService {
     public void updateUsersIdCountByBookId( int UsersIdCount, int bookId ) {
             bookToUsersDAO.updateUsersCountIdByBookId (UsersIdCount,bookId);
         }
+        public int getUsersIdCount(int bookId){
+           return bookToUsersDAO.findUsersIdCountByBookId(bookId);
+        }
     }
 

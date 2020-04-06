@@ -121,13 +121,6 @@ public class UserBookController {
         }
         return ResultFactory.buildSuccessResult (recommands);
     }
-
-//    @PostMapping("api/CF")
-//    public void cf(){
-//        CF cf = new CF ();
-//        cf.CF (24,userBookService.CountUserId (),userToBooksService.findAllUserId (),userToBooksService.findAllBybookid(),17);
-//    }
-
 }
 
 

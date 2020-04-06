@@ -20,4 +20,6 @@ public interface TopBookDAO extends JpaRepository<TopBook,Integer> {
     @Query(value = "select * from top_book ",nativeQuery = true)
     List<TopBook> findAllA( );
 
-}
+    @Query(value = "select read_times from top_book where book_id = ?1",nativeQuery = true)
+    int findReadTimeByBookId( int bookid );
+        }

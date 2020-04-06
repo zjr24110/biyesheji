@@ -41,4 +41,6 @@ public interface BookDAO extends JpaRepository<Book,Integer> {
     @Query(value = "select distinct id from book",nativeQuery = true)
     ArrayList<Book> getAllBooks();
 
+    @Query(value = "select * from book where id = ?1 ",nativeQuery = true)
+    Book findOneBookByID( int bookid );
 }

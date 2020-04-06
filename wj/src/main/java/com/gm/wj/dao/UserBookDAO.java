@@ -54,4 +54,9 @@ public interface UserBookDAO extends JpaRepository<UserBook,Integer> {
     //查找该本书籍对应的用户的总数
     @Query(value = "select COUNT(DISTINCT user_id) FROM user_book where book_id=?1 ",nativeQuery = true)
     int countByUsersId( Integer bookID );
+
+    //
+
+    @Query(value = "select distinct book_id from user_book where user_id =?1 ",nativeQuery = true)
+    List<Integer> findBookIdListByUserId(int userID);
 }

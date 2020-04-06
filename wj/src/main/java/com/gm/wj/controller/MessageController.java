@@ -2,6 +2,8 @@ package com.gm.wj.controller;
 import com.gm.wj.pojo.BookUserDTO;
 import com.gm.wj.pojo.Category;
 import com.gm.wj.pojo.User;
+import com.gm.wj.result.Result;
+import com.gm.wj.result.ResultFactory;
 import com.gm.wj.service.CategoryService;
 import com.gm.wj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +29,14 @@ public class MessageController {
 //        userService.addOrUpdate (user2);
 //        return userService.selecUserMessagetByUserName (user.getUserName ());
 //    }
-    @GetMapping("/api/updatePassword")
-    public String updatePassword( @RequestBody User user ) {
+    @PostMapping("/api/updatePassword")
+    public Result updatePassword( @RequestBody User user ) {
         User user1 = userService.findByUserName (user.getUsername ());
-        user.setPassword (user1.getPassword ());
-        userService.addOrUpdate (user);
-//        String message = "用户" + user.getUsername () + "状态更新成功";
-//        return ResultFactory.buildSuccessResult (message);
-        return user.getPassword ();
+        user1.setPassword (user.getPassword ());
+        userService.addOrUpdate (user1);
+        String message = "用户" + user.getUsername () + "状态更新成功";
+        return ResultFactory.buildSuccessResult (message);
+//        return user.getPassword ();
     }
 
 

@@ -1,5 +1,6 @@
 package com.gm.wj.service;
 
+import cn.hutool.poi.excel.WorkbookUtil;
 import com.gm.wj.dao.BookDAO;
 import com.gm.wj.pojo.Book;
 import com.gm.wj.pojo.Category;
@@ -79,6 +80,11 @@ public class BookService {
     //////////////所有书籍的id
     public List< Integer> bookIdList() {
         return bookDAO.findAllById ();
+    }
+
+    //////////////返回这本书籍的信息
+    public Book book(int bookid){
+        return bookDAO.findOneBookByID(bookid);
     }
 
 }

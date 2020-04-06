@@ -69,7 +69,7 @@
       return {
         books: [],
         currentPage: 1,
-        pagesize: 18,
+        pagesize: 18
         // /// /////////
         // texts: ['1', '2', '3', '4', '5']
   }

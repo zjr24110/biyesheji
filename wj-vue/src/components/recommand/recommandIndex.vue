@@ -69,7 +69,7 @@
       loadBooks () {
         var user = JSON.parse(localStorage.getItem('user'))
         var _this = this
-        this.$axios.post('/recommand', {
+        this.$axios.post('/SecondRecommand', {
           userName: user.username,
           bookID: 1
         }).then(resp => {

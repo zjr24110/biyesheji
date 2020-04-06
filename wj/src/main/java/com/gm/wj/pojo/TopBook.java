@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "top_book")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
-public class TopBook {
+public class TopBook  implements Comparable<TopBook> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -51,12 +51,18 @@ public class TopBook {
     public void setReadTimes( int readTimes ) {
         this.readTimes = readTimes;
     }
-
-    public int compareTo(TopBook o){
-        if(this.getReadTimes () > o.getReadTimes ()){
-            return 1;
-        }else {
-            return -1;
-        }
+    @Override
+    public int compareTo(TopBook topbook){
+        return  topbook.getReadTimes () -this.readTimes;
     }
+    public TopBook(){
+
+    }
+
+    public TopBook(int bookId, int readTimes) {
+        this.bookId = bookId;
+        this.readTimes = readTimes;
+    }
+
+
 }

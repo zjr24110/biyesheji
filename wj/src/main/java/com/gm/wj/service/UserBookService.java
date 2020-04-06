@@ -81,4 +81,9 @@ public  class UserBookService {
     public int CountUsersId( Integer bookID ) {
         return userBookDAO.countByUsersId (bookID);
     }
+
+    ////////////该用户的所有书籍id
+    public List<Integer> bookIDList(int userID) {
+        return userBookDAO.findBookIdListByUserId(userID);
+    }
 }

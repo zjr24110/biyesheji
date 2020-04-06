@@ -44,4 +44,7 @@ public class TopBookService {
         return topBookDAO.findAllA();
     }
 
+    public int findReadTimesByBookID(int bookid) {
+        return topBookDAO.findReadTimeByBookId (bookid);
+    }
 }

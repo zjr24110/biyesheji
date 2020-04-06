@@ -95,7 +95,7 @@
               return
             }
             this.$axios
-              .get('/api/updatePassword', {
+              .post('/updatePassword', {
                 id: this.form.id,
                 lastpassword: this.form.lastpassword,
                 password: this.form.password,
