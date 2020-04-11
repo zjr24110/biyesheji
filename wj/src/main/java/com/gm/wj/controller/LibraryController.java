@@ -12,10 +12,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @author Evan
- * @date 2019/4
- */
 
 @RestController
 public class LibraryController {

@@ -1,7 +1,6 @@
 package com.gm.wj.controller;
 import com.gm.wj.pojo.*;
 import com.gm.wj.service.*;
-import org.elasticsearch.common.recycler.Recycler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
@@ -87,7 +86,7 @@ public class PersonalController {
             String a = bookIdListStr.replace ("[", "").replace ("]", "");
             String[] b = a.split (",");
             for (String bccc : b) {
-//                System.out.println(bccc);
+                System.out.println(bccc);
             }
             int[] c = new int[b.length];
             for (int i = 0; i < b.length; i++) {

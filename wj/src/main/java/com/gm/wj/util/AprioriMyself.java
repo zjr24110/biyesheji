@@ -147,8 +147,8 @@ public class AprioriMyself {
             {
                 System.out.print("关联规则："+ s1.toString()+"=>>"+s2.toString()+"   ");
                 BookRecommand bookRecommand = new BookRecommand ();
-                bookRecommand.setBookCondition (s1.toString ());
-                bookRecommand.setResultBooks (s2.toString ());
+                bookRecommand.setBookCondition (s1.toString ().replace(" ",""));
+                bookRecommand.setResultBooks (s2.toString ().replace(" ",""));
                 bookRecommands.add (bookRecommand);
                 return confidence;
             }
